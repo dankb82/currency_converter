@@ -1,14 +1,13 @@
 class Currency
-  def initialize (currency_code, amount)
+  def initialize(currency_code, amount)
     @currency_code = currency_code
     @amount = amount
   end
 
-  def ==(other_amount)
-    if @currency_code == other_currency
-
-    end
+  def equal(other_amount)
+    @currency_code == other_currency && @amount == other_amount
   end
+
 
   def amount
     @amount
