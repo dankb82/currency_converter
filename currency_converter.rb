@@ -6,8 +6,8 @@ class Currency
     @amount = amount
   end
 
-  def ==(other_currency, other_amount)
-    if @currency_code == other_currency && @amount == other_amount
+  def ==(other)
+    if @currency_code == other.currency_code && @amount == other.amount
       true
     else
       false
@@ -17,18 +17,21 @@ class Currency
   def +(other)
     if @currency_code == other.currency_code
       @amount = @amount + other.amount
+    else false
     end
   end
 
   def -(other)
     if @currency_code == other.currency_code
       @amount = @amount - other.amount
+    else false
     end
   end
 
   def *(other)
     if @currency_code == other.currency_code
       @amount = @amount * other.amount
+    else false
     end
   end
 
@@ -44,8 +47,10 @@ end
 dollar = Currency.new(:USD, 2.00)
 dollar2 = Currency.new(:USD, 3.00)
 euro = Currency.new(:EUR, 1.00)
+currency_symbols = {"$" => :USD, "€" => :EUR}
+
 # byebug
-puts dollar2 * dollar
+puts dollar == dollar2
 
 #Need instance variables for currency_code, amount, maybe one more?
 #Need methods for addition and equals.
