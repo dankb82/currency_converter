@@ -2,11 +2,12 @@
 require 'byebug'
 class Currency
   def initialize(amount, currency_code = nil)
-  @currency_symbols = {"$" => :USD, "!" => :EUR}
-    if @currency_code == nil
+    @currency_symbols = {"$" => :USD, "!" => :EUR}
+    # byebug
+    if currency_code == nil
        @currency_code = @currency_symbols[amount.to_s[0]]
        amount.to_s[0] = ""
-       @amount = amount.to_f
+       @amount = amount
     else
       @amount = amount
       @currency_code = currency_code
@@ -17,7 +18,7 @@ class Currency
     if @currency_code == other.amount && @amount == other.currency_code
       true
     else
-      false
+      raise Error
     end
   end
 
@@ -41,7 +42,7 @@ class Currency
 
   def *(other)
     if amount.class == Fixnum || amount.class == Float
-       new_amount = @amount * new_amount
+       new_amount = @amount * amount.other
        new_amount = new_amount.to_f
        Currency.new(new_amount, @currency_code)
     end
@@ -55,15 +56,10 @@ class Currency
     @amount
   end
 end
-dollar = Currency.new(2.00, :USD)
-dollar2 = Currency.new(3.00, :USD)
-dollar3 = dollar + dollar2
-euro = Currency.new(1.00, :EUR)
+# dollar = Currency.new(2.00, :USD)
+# dollar2 = Currency.new(3.00, :USD)
+# dollar3 = dollar + dollar2
+# euro = Currency.new(1.00, :EUR)
 
-puts dollar.amount
-
-# byebug
-
-
-#Need instance variables for currency_code, amount, maybe one more?
-#Need methods for addition and equals.
+# puts dollar.currency_code
+# puts dollar.amount
