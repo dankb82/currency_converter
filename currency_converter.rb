@@ -1,7 +1,7 @@
 
 require 'byebug'
 class Currency
-  def initialize(currency_code, amount)
+  def initialize(amount, currency_code = nil)
   currency_symbols = {"$" => :USD, "€" => :EUR}
     if @currency_code == nil
        @currency_code = @amount[0]
@@ -16,7 +16,7 @@ class Currency
   end
 
   def ==(other)
-    if @currency_code == other.currency_code && @amount == other.amount
+    if @currency_code == other.amount && @amount == other.currency_code
       true
     else
       false
