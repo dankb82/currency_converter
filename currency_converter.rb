@@ -23,22 +23,25 @@ class Currency
 
   def +(other)
     if @currency_code == other.currency_code
-      dollar3 = @amount + other.amount
-      Currency.new(@currency_code, dollar3)
+      new_amount = @amount + other.amount
+      Currency.new(new_amount, @currency_code)
     else false
     end
   end
 
   def -(other)
     if @currency_code == other.currency_code
-      @amount = @amount - other.amount
+      new_amount = @amount - other.amount
+      Currency.new(new_amount, @currency_code)
     else false
     end
   end
 
   def *(other)
-    if @currency_code == other.currency_code
-      @amount = @amount * other.amount
+    if amount.class == Fixnum || amount.class == Float
+       new_amount = @amount * new_amount
+       new_amount = new_amount.to_f
+       Currency.new(new_amount, @currency_code)
     else false
     end
   end
@@ -55,11 +58,11 @@ end
 dollar = Currency.new(2.00, :USD)
 dollar2 = Currency.new(3.00, :USD)
 dollar3 = dollar + dollar2
-
 euro = Currency.new(1.00, :EUR)
-# currency_symbols = {"$" => :USD, "€" => :EUR}
-dollar3 = dollar + dollar2
-puts dollar.amount
+puts dollar
+puts dollar2
+puts dollar3
+
 
 # byebug
 
