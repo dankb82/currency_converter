@@ -2,17 +2,15 @@
 require 'byebug'
 class Currency
   def initialize(amount, currency_code = nil)
-  currency_symbols = {"$" => :USD, "€" => :EUR}
+  @currency_symbols = {"$" => :USD, "!" => :EUR}
     if @currency_code == nil
-       @currency_code = @amount[0]
-       @amount = @amount[1..-1].to_f
+       @currency_code = @currency_symbols[amount.to_s[0]]
+       amount.to_s[0] = ""
+       @amount = amount.to_f
     else
-      @amount = amount.to_f
-      @currency_code = currency_code.to_sym
+      @amount = amount
+      @currency_code = currency_code
     end
-
-    @currency_code = currency_code
-    @amount = amount
   end
 
   def ==(other)
@@ -54,16 +52,14 @@ class Currency
   end
 
 end
-dollar = Currency.new(:USD, 2.00)
-dollar2 = Currency.new(:USD, 3.00)
+dollar = Currency.new(2.00, :USD)
+dollar2 = Currency.new(3.00, :USD)
 dollar3 = dollar + dollar2
 
-euro = Currency.new(:EUR, 1.00)
-currency_symbols = {"$" => :USD, "€" => :EUR}
+euro = Currency.new(1.00, :EUR)
+# currency_symbols = {"$" => :USD, "€" => :EUR}
 dollar3 = dollar + dollar2
 puts dollar.amount
-puts dollar2
-puts dollar3
 
 # byebug
 
