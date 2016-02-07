@@ -1,5 +1,4 @@
-
-require 'byebug'
+# require 'byebug'
 class Currency
   def initialize(amount, currency_code = nil)
     @currency_symbols = {"$" => :USD, "!" => :EUR}
@@ -7,7 +6,7 @@ class Currency
     if currency_code == nil
        @currency_code = @currency_symbols[amount.to_s[0]]
        amount.to_s[0] = ""
-       @amount = amount
+       @amount = amount.to_f
     else
       @amount = amount
       @currency_code = currency_code
@@ -56,10 +55,10 @@ class Currency
     @amount
   end
 end
-# dollar = Currency.new(2.00, :USD)
-# dollar2 = Currency.new(3.00, :USD)
-# dollar3 = dollar + dollar2
-# euro = Currency.new(1.00, :EUR)
+dollar = Currency.new(2.00, :USD)
+dollar2 = Currency.new(3.00, :USD)
+dollar3 = dollar + dollar2
+euro = Currency.new(1.00, :EUR)
 
 # puts dollar.currency_code
 # puts dollar.amount
