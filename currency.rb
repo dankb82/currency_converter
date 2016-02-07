@@ -41,7 +41,7 @@ class Currency
 
   def *(other)
     if amount.class == Fixnum || amount.class == Float
-       new_amount = @amount * amount.other
+       new_amount = @amount * other.amount
        new_amount = new_amount.to_f
        Currency.new(new_amount, @currency_code)
     end

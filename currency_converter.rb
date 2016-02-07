@@ -10,7 +10,7 @@ class CurrencyConverter
     if @rates[desired_currency] > 1.0
       new_amount = (given_currency.amount) * (@rates[desired_currency])
       converted_currency = Currency.new(new_amount, desired_currency)
-    else
+    elsif
       @rates[desired_currency] <= 1.0
       new_amount = given_currency.amount / @rates[given_currency.currency_code]
       converted_currency = Currency.new(new_amount, desired_currency)
