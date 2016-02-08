@@ -14,6 +14,9 @@ class CurrencyConverter
       @rates[desired_currency] <= 1.0
       new_amount = given_currency.amount / @rates[given_currency.currency_code]
       converted_currency = Currency.new(new_amount, desired_currency)
+    else
+      !@rates.include?[desired_currency]
+      raise UnknownCurrencyError
     end
   end
 end

@@ -26,7 +26,7 @@ class Currency
       new_amount = @amount + other.amount
       Currency.new(new_amount, @currency_code)
     else
-      raise Error
+      raise DifferentCurrencyCodeError
     end
   end
 
@@ -35,7 +35,7 @@ class Currency
       new_amount = @amount - other.amount
       Currency.new(new_amount, @currency_code)
     else
-      raise Error
+      raise DifferentCurrencyCodeError
     end
   end
 
